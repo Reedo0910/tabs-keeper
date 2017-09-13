@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "Tabs Keeper",
+    "version": "1.0",
+    "homepage_url": "https://example.org/my-addon",
+    "description": "Tabs Keeper can help you manage your tabs by grouping them.",
+    "icons": {
+        "48": "res/icons/icon.svg"
+    },
+    "browser_action": {
+        "default_icon": "res/icons/icon.svg",
+        "default_title": "Tabs Keeper",
+        "default_popup": "res/ui/popup.html",
+        "browser_style": true
+    },
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "background": {
+        "scripts": ["res/lib/background.js"]
+    }
+}

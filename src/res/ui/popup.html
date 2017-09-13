@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tab Keeper</title>
+    <script src="../lib/Vue/vue.js"></script>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="popup" id="popup" v-cloak>
+        <ul class="group-list">
+            <li class="group-list-item" v-for="g in groups">{{ g.name }}</li>
+        </ul>
+        <transition name="fade">
+            <div class="group-container" v-for="g in groups" v-if="showId === g.id">
+                <ul class="tab-list">
+                    <li class="tab-list-item" :class="{active: t.active, pinned: t.pinned}" v-for="(index, t) in tabs" :style="getFavicon(index)">
+                        <span @click="setActive(t.id)">{{t.title}}</span>
+                        <button class="close-btn" @click="closeTab(t.id)" v-if="!t.pinned"></button>
+                    </li>
+                    <li class="tab-list-item new-tab" @click="newTab()"><span>Open New Tab</span></li>
+                </ul>
+                <ul class="action-bar">
+                    <li class="action-bar-item">
+                        <button class="action-bar-btn" v-if="g.active" disabled>You're Already In This Group</button>
+                        <button class="action-bar-btn" v-if="!g.active" disabled>Switch To This Group</button>
+                    </li>
+                </ul>
+            </div>
+        </transition>
+    </div>
+</body>
+<script src="popup.js"></script>
+<script src="../lib/background.js"></script>
+
+</html>

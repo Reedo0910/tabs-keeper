@@ -1,0 +1,138 @@
+[v-cloak] {
+    display: none
+}
+
+.fade-enter-active {
+    transition: opacity .8s
+}
+
+.fade-enter,
+.fade-leave {
+    opacity: 0
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+    box-sizing: border-box;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+div.group-container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+ul.tab-list {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+ul.action-bar {
+    display: flex;
+}
+
+li.tab-list-item {
+    display: flex;
+    padding-left: 40px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    color: #444444;
+    border-left: 5px transparent solid;
+    justify-content: space-between;
+    -webkit-transition: background .1s ease;
+    -moz-transition: background .1s ease;
+    transition: background .1s ease;
+}
+
+li.tab-list-item>span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: " ...";
+    width: 270px;
+    display: inline-block;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+li.tab-list-item.active {
+    border-color: #a4000f;
+}
+
+li.tab-list-item.pinned {
+    background-color: #f0f0f0;
+}
+
+li.tab-list-item.new-tab {
+    border-top: 1px solid #eee;
+    background-image: url(../icons/Add_Row.png);
+    opacity: .8;
+}
+
+li.tab-list-item:hover {
+    background-color: #eee;
+    -webkit-transition: background .1s ease;
+    -moz-transition: background .1s ease;
+    transition: background .1s ease;
+}
+
+li.tab-list-item.new-tab:hover {
+    opacity: 1;
+}
+
+li.action-bar-item {
+    display: block;
+    width: 100%;
+}
+
+button.close-btn {
+    color: #444444;
+    padding: 10px 20px;
+    background-image: url(../icons/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    transition: all .1s ease;
+    opacity: 0;
+}
+
+button.close-btn:hover {
+    background-color: #DBDBDB;
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+li.tab-list-item:hover button.close-btn {
+    opacity: 1;
+}
+
+button.action-bar-btn {
+    text-align: center;
+    width: 100%;
+    background-color: #0060df;
+    color: #fff;
+    padding: 15px 10px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+button.action-bar-btn:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
