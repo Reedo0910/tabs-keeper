@@ -2,13 +2,12 @@ var app = new Vue({
     el: '#popup',
     data: {
         showId: 0,
-        tabs: [],
+        activeId: 0,
         groups: [{
             index: 0,
             id: 0,
             name: 'Group 1',
-            active: true,
-            storeTabs: []
+            tabs: []
         }]
     },
     created() {
@@ -26,8 +25,15 @@ var app = new Vue({
         browser.tabs.onRemoved.removeListener(this.handleRemove)
     },
     methods: {
-        alert() {
-            alert('hello')
+        addGroup() {
+            const vm = this;
+            if (vm.groups.length >= 2) return;
+            let newGroup = new Object();
+            newGroup.index = vm.groups.length;
+            newGroup.id = 1;
+            newGroup.name = 'Group 2';
+            newGroup.tabs = [];
+            vm.groups.push(newGroup)
         },
         newTab() {
             browser.tabs.create({})
@@ -45,9 +51,9 @@ var app = new Vue({
         },
         getTabsList() {
             const vm = this;
-            vm.tabs = [];
+            vm.groups[0].tabs = [];
             getAllTabs().then((tabs) => {
-                vm.tabs = tabs;
+                vm.groups[0].tabs = tabs;
             }).catch((error) => {
                 console.log(error);
             });
@@ -56,10 +62,10 @@ var app = new Vue({
             const Default = '../icons/firefox_copyrighted.png';
             const vm = this;
             let fav = '';
-            if (vm.tabs[index].favIconUrl === undefined) {
+            if (vm.groups[0].tabs[index].favIconUrl === undefined) {
                 fav = Default;
             } else {
-                fav = vm.tabs[index].favIconUrl;
+                fav = vm.groups[0].tabs[index].favIconUrl;
             }
             return {
                 'background-image': 'url(' + fav + ')'
@@ -79,18 +85,18 @@ var app = new Vue({
         },
         handleCreate(tab) {
             const vm = this;
-            vm.tabs.splice(tab.index, 0, tab);
+            vm.groups[0].tabs.splice(tab.index, 0, tab);
         },
         handleRemove(tabId) {
             const vm = this;
-            for (let i = 0; i < vm.tabs.length; i++) {
-                if (vm.tabs[i].id === tabId) {
-                    vm.tabs.splice(i, 1);
+            for (let i = 0; i < vm.groups[0].tabs.length; i++) {
+                if (vm.groups[0].tabs[i].id === tabId) {
+                    vm.groups[0].tabs.splice(i, 1);
                 }
             }
         },
         handleActive(activeInfo) {
-            this.tabs.forEach(function (t) {
+            this.groups[0].tabs.forEach(function (t) {
                 t.id === activeInfo.tabId ? t.active = true : t.active = false;
             }, this);
         },
@@ -98,9 +104,9 @@ var app = new Vue({
             const vm = this;
             for (let key in changeInfo) {
                 if (changeInfo.hasOwnProperty(key)) {
-                    for (let i = 0; i < vm.tabs.length; i++) {
-                        if (vm.tabs[i].id === tabId) {
-                            vm.tabs[i][key] = changeInfo[key];
+                    for (let i = 0; i < vm.groups[0].tabs.length; i++) {
+                        if (vm.groups[0].tabs[i].id === tabId) {
+                            vm.groups[0].tabs[i][key] = changeInfo[key];
                         }
                     }
                 }

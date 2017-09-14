@@ -13,28 +13,27 @@
 <body>
     <div class="popup" id="popup" v-cloak>
         <ul class="group-list">
-            <li class="group-list-item" v-for="g in groups">{{ g.name }}</li>
+            <li class="group-list-item" v-for="g in groups" :class="{open: showId === g.id}" @click="showId = g.id">{{ g.name }}</li>
+            <li class="group-list-item" @click="addGroup">+</li>
         </ul>
-        <transition name="fade">
-            <div class="group-container" v-for="g in groups" v-if="showId === g.id">
-                <ul class="tab-list">
-                    <li class="tab-list-item" :class="{active: t.active, pinned: t.pinned}" v-for="(index, t) in tabs" :style="getFavicon(index)">
-                        <span @click="setActive(t.id)">{{t.title}}</span>
-                        <button class="close-btn" @click="closeTab(t.id)" v-if="!t.pinned"></button>
-                    </li>
-                    <li class="tab-list-item new-tab" @click="newTab()"><span>Open New Tab</span></li>
-                </ul>
-                <ul class="action-bar">
-                    <li class="action-bar-item">
-                        <button class="action-bar-btn" v-if="g.active" disabled>You're Already In This Group</button>
-                        <button class="action-bar-btn" v-if="!g.active" disabled>Switch To This Group</button>
-                    </li>
-                </ul>
-            </div>
-        </transition>
+        <div class="group-container" v-for="g in groups">
+            <ul class="tab-list" v-if="showId === g.id">
+                <li class="tab-list-item" :class="{active: t.active}" v-for="(index, t) in g.tabs" :style="getFavicon(index)" v-show="!t.pinned">
+                    <span @click="setActive(t.id)">{{t.title}}</span>
+                    <button class="close-btn" @click="closeTab(t.id)"></button>
+                </li>
+                <li class="tab-list-item new-tab" @click="newTab()"><span>Open New Tab</span></li>
+            </ul>
+            <ul class="action-bar" v-if="showId === g.id" >
+                <li class="action-bar-item">
+                    <button class="action-bar-btn" v-if="activeId === g.id" disabled>You're Already In This Group</button>
+                    <button class="action-bar-btn" v-else>Switch To This Group</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 <script src="popup.js"></script>
-<script src="../lib/background.js"></script>
+<script src="../lib/method.js"></script>
 
 </html>

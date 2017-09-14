@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Tabs Keeper",
     "version": "1.0",
-    "homepage_url": "https://example.org/my-addon",
+    "homepage_url": "https://github.com/Reedo0910/tabs-keeper",
     "description": "Tabs Keeper can help you manage your tabs by grouping them.",
     "icons": {
         "48": "res/icons/icon.svg"

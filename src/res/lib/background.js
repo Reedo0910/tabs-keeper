@@ -1,16 +1,30 @@
-function getAllTabs() {
-    return new Promise(function (resolve, reject) {
-        browser.tabs.query({
-            currentWindow: true
-        }).then((tabs) => {
-            resolve(tabs)
-        })
-    })
+browser.tabs.onUpdated.addListener(this.handleUpdate)
+browser.tabs.onCreated.addListener(this.handleCreate)
+browser.tabs.onRemoved.addListener(this.handleRemove)
+
+function handleCreate(tab) {
+    const vm = this;
+    vm.groups[0].tabs.splice(tab.index, 0, tab);
 }
 
-function handleUpdated(tabId, changeInfo, tabInfo) {
-    if (changeInfo.url) {
-        console.log("Tab: " + tabId +
-            " URL changed to " + changeInfo.url);
+function handleRemove(tabId) {
+    const vm = this;
+    for (let i = 0; i < vm.groups[0].tabs.length; i++) {
+        if (vm.groups[0].tabs[i].id === tabId) {
+            vm.groups[0].tabs.splice(i, 1);
+        }
+    }
+}
+
+function handleUpdate(tabId, changeInfo, tabInfo) {
+    const vm = this;
+    for (let key in changeInfo) {
+        if (changeInfo.hasOwnProperty(key)) {
+            for (let i = 0; i < vm.groups[0].tabs.length; i++) {
+                if (vm.groups[0].tabs[i].id === tabId) {
+                    vm.groups[0].tabs[i][key] = changeInfo[key];
+                }
+            }
+        }
     }
 }

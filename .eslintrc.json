@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "indent": [
+            0,
+            4
+        ],
+        "linebreak-style": [
+            0,
+            "windows"
+        ],
+        "no-use-before-define": 0,
+        "no-undef": 0,
+        "no-unused-vars": 0,
+        "quotes": [
+            1,
+            "single"
+        ],
+        "no-console": 0
+    }
+}
