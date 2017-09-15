@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #eee;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+    box-sizing: border-box;
+}
+
+button {
+    display: inline-block;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+ul.group-bar {
+    width: 100%;
+    padding: 20px 10px;
+    background-color: #888;
+    box-sizing: border-box;
+}
+
+ul.tab-list {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+li.group-bar-item {
+    display: inline-block;
+    background-color: #fff;
+    user-select: none;
+    width: 150px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    -moz-user-select: none;
+}
+
+li.tab-list-item {
+    display: inline-flex;
+    color: #fff;
+    margin: 8px 10px;
+    padding: 5px 10px 5px 40px;
+    min-width: 10px;
+    box-sizing: border-box;
+    background-color: #5F9EDF;
+    text-align: center;
+    user-select: none;
+    -moz-user-select: none;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    justify-content: space-between;
+}
+
+li.tab-list-item.sortable-ghost {
+    opacity: .5;
+}
+
+li.tab-list-item .title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: " ...";
+    max-width: 270px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+li.tab-list-item .sortable-drag {
+    cursor: move;
+    cursor: -webkit-grabbing;
+    display: inline-block;
+    padding: 10px 0;
+}
+
+button.close-btn {
+    color: #444444;
+    padding: 10px 20px;
+    background-image: url(../icons/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+}

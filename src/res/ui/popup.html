@@ -18,7 +18,7 @@
         </ul>
         <div class="group-container" v-for="g in groups">
             <ul class="tab-list" v-if="showId === g.id">
-                <li class="tab-list-item" :class="{active: t.active}" v-for="(index, t) in g.tabs" :style="getFavicon(index)" v-show="!t.pinned">
+                <li class="tab-list-item" :class="{active: t.active}" v-for="(index, t) in g.tabs" :style="getFavicon(index)">
                     <span @click="setActive(t.id)">{{t.title}}</span>
                     <button class="close-btn" @click="closeTab(t.id)"></button>
                 </li>
@@ -28,12 +28,12 @@
                 <li class="action-bar-item">
                     <button class="action-bar-btn" v-if="activeId === g.id" disabled>You're Already In This Group</button>
                     <button class="action-bar-btn" v-else>Switch To This Group</button>
+                    <button class="action-bar-btn" @click="openManager">Manager Panel</button>
                 </li>
             </ul>
         </div>
     </div>
 </body>
+<script src="../lib/common.js"></script>
 <script src="popup.js"></script>
-<script src="../lib/method.js"></script>
-
 </html>

@@ -15,9 +15,10 @@
     },
     "permissions": [
         "tabs",
-        "storage"
+        "storage",
+        "history"
     ],
     "background": {
-        "scripts": ["res/lib/background.js"]
+        "scripts": ["res/lib/common.js"]
     }
 }

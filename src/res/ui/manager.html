@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabs Keeper Manager</title>
+    <link rel="stylesheet" href="manager.css">
+    <script src="../lib/Vue/vue.js"></script>
+</head>
+
+<body>
+    <div id="manager-panel">
+        <ul class="group-bar">
+            <li class="group-bar-item" v-for="g in groups">{{ g.name }}</li>
+        </ul>
+        <div class="tab-container" v-for="g in groups">
+            <ul class="tab-list" id="tab-list" v-if="showId === g.id">
+                <li class="tab-list-item" v-for="(index, t) in g.tabs" :style="getFavicon(index)">
+                    <span class="sortable-drag">::</span>
+                    <span class="title">{{ t.title }}</span>
+                    <button class="close-btn" @click="closeTab(t.id)"></button></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="../lib/Sortable.min.js"></script>
+<script src="../lib/common.js"></script>
+<script src="manager.js"></script>
+
+</html>
